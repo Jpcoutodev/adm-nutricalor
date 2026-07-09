@@ -1,16 +1,29 @@
 import { supabase } from '@/lib/supabase';
 import styles from './page.module.css';
 
-export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 export default async function OnboardingPage() {
-  // Buscar todos os eventos de onboarding (para grandes volumes, seria melhor criar uma View ou RPC no Supabase)
-  const { data: events } = await supabase
-    .from('onboarding_events')
-    .select('session_id, step_name, step_index, created_at');
+  let events: any[] = [];
 
-  if (!events) {
-    return <div className={styles.container}>Erro ao carregar os dados.</div>;
+  try {
+    const { data } = await supabase
+      .from('onboarding_events')
+      .select('session_id, step_name, step_index, created_at');
+    events = data || [];
+  } catch (error) {
+    console.error('Erro ao buscar dados do Supabase:', error);
+  }
+
+  if (!events.length) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>Funil de Onboarding</h1>
+          <p className={styles.subtitle}>Nenhum evento registrado ainda.</p>
+        </div>
+      </div>
+    );
   }
 
   // Cálculos do Funil

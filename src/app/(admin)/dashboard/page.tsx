@@ -2,18 +2,25 @@ import { supabase } from '@/lib/supabase';
 import styles from './page.module.css';
 import { Users, Utensils, ArrowUpRight } from 'lucide-react';
 
-export const revalidate = 0; // Para sempre buscar dados frescos
+export const dynamic = 'force-dynamic';
 
 export default async function DashboardPage() {
-  const [
-    { count: usersCount },
-    { count: mealsCount },
-    { count: onboardingCount }
-  ] = await Promise.all([
-    supabase.from('profiles').select('*', { count: 'exact', head: true }),
-    supabase.from('meals').select('*', { count: 'exact', head: true }),
-    supabase.from('onboarding_events').select('*', { count: 'exact', head: true })
-  ]);
+  let usersCount = 0;
+  let mealsCount = 0;
+  let onboardingCount = 0;
+
+  try {
+    const [profilesRes, mealsRes, onboardingRes] = await Promise.all([
+      supabase.from('profiles').select('*', { count: 'exact', head: true }),
+      supabase.from('meals').select('*', { count: 'exact', head: true }),
+      supabase.from('onboarding_events').select('*', { count: 'exact', head: true })
+    ]);
+    usersCount = profilesRes.count || 0;
+    mealsCount = mealsRes.count || 0;
+    onboardingCount = onboardingRes.count || 0;
+  } catch (error) {
+    console.error('Erro ao buscar dados do Supabase:', error);
+  }
 
   return (
     <div className={styles.container}>
