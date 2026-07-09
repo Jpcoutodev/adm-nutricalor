@@ -1,0 +1,149 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.subtitle {
+  color: var(--muted-foreground);
+  font-size: 1rem;
+}
+
+.summaryCard {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.summaryLabel {
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summaryValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.funnelContainer {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.funnelTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: var(--foreground);
+}
+
+.funnelList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.funnelStep {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stepHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stepIndex {
+  width: 28px;
+  height: 28px;
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.stepName {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--foreground);
+}
+
+.stepStats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stepCount {
+  color: var(--muted-foreground);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.stepPercentage {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--primary);
+  min-width: 3rem;
+  text-align: right;
+}
+
+.progressBarBg {
+  width: 100%;
+  height: 12px;
+  background-color: var(--muted);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 999px;
+  transition: width 1s ease-in-out;
+}
+
+.dropoffInfo {
+  font-size: 0.85rem;
+  color: #ef4444; /* red */
+  text-align: right;
+  font-weight: 500;
+  margin-top: -0.25rem;
+}
