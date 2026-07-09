@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 import styles from './page.module.css';
 import { Users, Utensils, ArrowUpRight } from 'lucide-react';
 
@@ -10,6 +10,7 @@ export default async function DashboardPage() {
   let onboardingCount = 0;
 
   try {
+    const supabase = getSupabase();
     const [profilesRes, mealsRes, onboardingRes] = await Promise.all([
       supabase.from('profiles').select('*', { count: 'exact', head: true }),
       supabase.from('meals').select('*', { count: 'exact', head: true }),

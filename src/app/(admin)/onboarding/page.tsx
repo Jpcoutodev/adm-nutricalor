@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 import styles from './page.module.css';
 
 export const dynamic = 'force-dynamic';
@@ -7,6 +7,7 @@ export default async function OnboardingPage() {
   let events: any[] = [];
 
   try {
+    const supabase = getSupabase();
     const { data } = await supabase
       .from('onboarding_events')
       .select('session_id, step_name, step_index, created_at');
